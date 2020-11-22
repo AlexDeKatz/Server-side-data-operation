@@ -1,11 +1,32 @@
 .main-layout {
     display: grid;
-    row-gap: 32px;
     grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+        "list-layout"
+        "form-layout";
 
     .list-layout {
+        grid-area: list-layout;
         height: 400px;
         overflow: auto;
+        padding: 0px 10px;
+    }
+
+    .form-layout {
+        padding: 32px 10px;
+        grid-area: form-layout;
+        display: grid;
+        row-gap: 10px;
+        grid-template-rows: 40px 200px;
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-fields {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 16px;
+        }
     }
 }
 

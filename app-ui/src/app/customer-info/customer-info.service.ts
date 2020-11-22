@@ -22,4 +22,8 @@ export class CustomerInfoService {
     const params: HttpParams = new HttpParams({ fromObject: data })
     return this.http.get(this.baseUrl, { params }).pipe(delay(3000));
   }
+
+  addCustomer(data) {
+    return this.http.post(this.baseUrl, data);
+  }
 }

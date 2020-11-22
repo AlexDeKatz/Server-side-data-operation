@@ -1,6 +1,7 @@
 const express = require('express');
-const dbConnector = require('../utility/db-connect')
-const support = require('../utility/support')
+const dbConnector = require('../utility/db-connect');
+const support = require('../utility/support');
+const { v4: uuidv4 } = require('uuid');
 
 const customerInfoController = express.Router();
 
@@ -32,6 +33,16 @@ customerInfoController.get('/customer-info', async (req, res, next) => {
             requiredData = support.sortData(pageData, sortKey, sortOrder);
         }
         res.status(200).json({ result: requiredData, totalItems: customerInfo.length });
+    } catch (err) {
+        res.status(500).json({ error: 'Some error in DB' });
+    }
+})
+
+customerInfoController.post('/customer-info', async (req, res, next) => {
+    const payload = { ...req.body, record_no: uuidv4() }
+    try {
+        await dbConnector.addDataToDB(payload);
+        res.status(201).send({ message: 'Customer added successfully' })
     } catch (err) {
         res.status(500).json({ error: 'Some error in DB' });
     }

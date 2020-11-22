@@ -45,16 +45,39 @@
       </mat-paginator>
     </section>
   </section>
-  <section id="form">
-    <header>
+  <section id="form" class="form-layout">
+    <header class="form-header">
       <h2>Customer information</h2>
-      <a mat-raised-button color="primary" style="float: right;" href="#list">
-        Save
-      </a>
-      <form [formGroup]="customerForm" autocomplete="off" class="form col-sm-12">
-
-      </form>
+      <div style="float: right;">
+        <button type="button" mat-raised-button color="primary" (click)="addCustomer()"
+          style="margin-right: 10px;">Save</button>
+        <a mat-raised-button color="accent" href="#list" id="close">
+          Show Customers
+        </a>
+      </div>
     </header>
+    <form [formGroup]="customerForm" autocomplete="off" class="form-fields">
+      <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput required formControlName="first_name" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last name</mat-label>
+        <input matInput required formControlName="last_name" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email ID</mat-label>
+        <input matInput required formControlName="email" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Car</mat-label>
+        <input matInput required formControlName="car_make" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mfg. Year</mat-label>
+        <input matInput required formControlName="mfg_year" />
+      </mat-form-field>
+    </form>
   </section>
 </article>
 <div class="centered" *ngIf="dataSource.loading$ |async">
