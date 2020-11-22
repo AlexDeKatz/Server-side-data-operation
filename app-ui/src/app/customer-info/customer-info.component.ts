@@ -79,7 +79,6 @@ export class CustomerInfoComponent implements OnInit, AfterViewInit {
   }
 
   private loadCustomerPage() {
-    console.log("this.sort.active", this.sort.active)
     this.dataSource.loadCustomerInfo(this.paginator.pageIndex, this.paginator.pageSize, this.input.nativeElement.value, this.sort.direction, this.sort.active);
   }
 

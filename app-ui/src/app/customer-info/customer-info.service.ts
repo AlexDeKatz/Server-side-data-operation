@@ -20,7 +20,7 @@ export class CustomerInfoService {
       sortKey
     }
     const params: HttpParams = new HttpParams({ fromObject: data })
-    return this.http.get(this.baseUrl, { params }).pipe(delay(3000));
+    return this.http.get(this.baseUrl, { params })
   }
 
   addCustomer(data) {

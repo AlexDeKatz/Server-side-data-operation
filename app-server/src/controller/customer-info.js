@@ -7,7 +7,6 @@ const customerInfoController = express.Router();
 
 customerInfoController.get('/customer-info', async (req, res, next) => {
     const { pageNumber, pageSize, filter, sortOrder, sortKey } = req.query;
-    console.log("Req: ", req.query)
     let initialPos = 0;
     let customerInfo = [];
     let requiredData = []
