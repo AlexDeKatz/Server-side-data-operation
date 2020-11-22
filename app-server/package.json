@@ -1,0 +1,19 @@
+{
+  "name": "app-server",
+  "version": "1.0.0",
+  "description": "Mock server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db":"json-server --watch db.json",
+    "server":"node src/app.js",
+    "start":"start npm run db && start npm run server"
+  },
+  "author": "Likhith Kolayari",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}

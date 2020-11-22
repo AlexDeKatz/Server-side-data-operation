@@ -1,0 +1,62 @@
+<article class="main-layout">
+  <section id="list">
+    <header>
+      <h2>Pegasus Motors customer Information portal</h2>
+      <div>
+        <mat-form-field>
+          <input matInput autocomplete="off" placeholder="Search Customer" #input>
+        </mat-form-field>
+        <a mat-raised-button color="primary" style="float: right;" href="#form">
+          <mat-icon>add</mat-icon> &nbsp;New Customer
+        </a>
+      </div>
+    </header>
+    <section>
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8 list-layout" matSort matSortActive="id"
+        matSortDirection="asc" matSortDisableClear>
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>SL No.</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="first_name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>First name</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.first_name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="last_name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Last name</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.last_name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Email ID</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="car_make">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Make</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.car_make}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="mfg_year">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Mfg. Year</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.mfg_year}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [length]="dataSource.totalLength$|async" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+      </mat-paginator>
+    </section>
+  </section>
+  <section id="form">
+    <header>
+      <h2>Customer information</h2>
+      <a mat-raised-button color="primary" style="float: right;" href="#list">
+        Save
+      </a>
+      <form [formGroup]="customerForm" autocomplete="off" class="form col-sm-12">
+
+      </form>
+    </header>
+  </section>
+</article>
+<div class="centered" *ngIf="dataSource.loading$ |async">
+  <mat-spinner diameter="60"></mat-spinner>
+</div>
