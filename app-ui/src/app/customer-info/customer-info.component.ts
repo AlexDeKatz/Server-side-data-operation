@@ -36,7 +36,7 @@ export class CustomerInfoComponent implements OnInit, AfterViewInit {
     this.customerForm = this.formBuilder.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      email: [''],
+      email: ['', Validators.required],
       car_make: ['', Validators.required],
       mfg_year: ['', Validators.required]
     })
@@ -49,7 +49,7 @@ export class CustomerInfoComponent implements OnInit, AfterViewInit {
       map((event: any) => event.target.value),
       debounceTime(500),
       distinctUntilChanged(),
-      filter((input: string) => input.trim().length > 2), //Restricting the no of min characters before search starts
+      filter((input: string) => (input.trim().length===0) || (input.trim().length > 2)), //Restricting the no of min characters before search starts
       tap(() => {
         this.paginator.pageIndex = 0;
         this.loadCustomerPage();
