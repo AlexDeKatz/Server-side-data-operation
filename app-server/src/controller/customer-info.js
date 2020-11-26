@@ -7,7 +7,7 @@ const customerInfoController = express.Router();
 
 customerInfoController.get('/customer-info', async (req, res, next) => {
     const { pageNumber, pageSize, filter, sortOrder, sortKey } = req.query;
-    let initialPos = 0;
+    // let initialPos = 0;
     let customerInfo = [];
     let requiredData = []
     try {
@@ -17,17 +17,8 @@ customerInfoController.get('/customer-info', async (req, res, next) => {
         } else {
             customerInfo = [...response.data]
         }
-        initialPos = parseInt(pageNumber, 10) * parseInt(pageSize, 10);
+        // initialPos = parseInt(pageNumber, 10) * parseInt(pageSize, 10);
         if (customerInfo.length) {
-            // requiredData = customerInfo.slice(initialPos, initialPos + parseInt(pageSize, 10)).sort((obj1, obj2) => {
-            //     let compareResult = 0;
-            //     if (obj1[sortKey] < obj2[sortKey]) {
-            //         compareResult = -1
-            //     } else if (obj1[sortKey] > obj2[sortKey]) {
-            //         compareResult = 1
-            //     }
-            //     return compareResult * ((sortOrder === "asc") ? 1 : -1)
-            // });
             const pageData = support.pageData(customerInfo, pageNumber, pageSize);
             requiredData = support.sortData(pageData, sortKey, sortOrder);
         }
